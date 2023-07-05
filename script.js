@@ -1,14 +1,22 @@
 let display = document.getElementById('display');
-let buttons = Array.from(document.getElementsByClassName('operator'));
+let digits = Array.from(document.getElementsByClassName('digit'));
+let operators = Array.from(document.getElementsByClassName('operator'));
 let clear = document.getElementById('clear');
 let equals = document.getElementById('equals');
 
-buttons.map( button => {
+digits.map( button => {
     button.addEventListener('click', (e) => {
         e.preventDefault();
-        let operator = e.target.innerText;
-        let displayVal = display.value;
-        display.value += operator;
+        display.value += e.target.value;
+    })
+});
+
+operators.map( button => {
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
+        if(display.value !== '') {
+            display.value += e.target.value;
+        }
     })
 });
 
